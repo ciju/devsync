@@ -27,7 +27,7 @@ http.createServer(function(req, res) {
         // parse a file upload
         var form = new formidable.IncomingForm();
         form.parse(req, function(err, fields, files) {
-            res.writeHead(204, {'content-type': 'text/plain'});
+            res.writeHead(204, {'content-type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
             sys.debug('recieved: ');
             sys.debug(sys.inspect({fileds: fields, files: files}));
             // sys.debug('path orig: ' + path.join(cwd, fields['path']));
@@ -94,8 +94,6 @@ io.sockets.on('connection', function (socket) {
 });
 
 watch(path.join(process.cwd(), '_site'), function (p, n) {
-    sys.debug('wjat');
-    sys.debug(cb);
     if (cb) {
         cb();
     }

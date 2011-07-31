@@ -1,0 +1,11 @@
+{
+"name": "ciju cherian",
+"email": "mail.ciju.cherian@gmail.com",
+"url": "https://github.com/ciju/devsync",
+"scripts": {"start": "node upload.js"},
+
+{"dependencies":
+ {"formidable": }
+ {"walk": }
+}
+}
