@@ -93,7 +93,8 @@ io.sockets.on('connection', function (socket) {
     sys.debug(cb);
 });
 
-watch(path.join(process.cwd(), '_site'), function (p, n) {
+// for jeykll based site use "path.join(process.cwd(), '_site')"
+watch(process.cwd(), function (p, n) {
     if (cb) {
         cb();
     }
