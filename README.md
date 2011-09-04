@@ -1,24 +1,20 @@
 # Sync WebInspector edits with localhost
 
-The hack is basically a bridge b/w chrome devtools and localhost editing. A web developer spends much time on devtools (if he uses chrome). Each time, he tries some changes on the site, replicates them to files on the localhost, and then again has to switch back to the browser and do refresh. The hack tries to make that cycle simpler. You do your edits on devtools, once you are ready, push a button (will try to make it a keyboard shortcut) and the changes will go back to the localhost files (js and css changes) and site itself will be refreshed. If one edits the localhost file, again the page on the browser is refreshed (just Alt+Tab to it).
+The hack is basically a bridge between chrome devtools (WebInspector) and localhost editing.
+
+As web developers, we spend quite some time on devtools (if using chrome). Each time, we try some changes on the site, replicate them to files on the localhost, and then again switch back to the browser and do refresh. This hack tries to make the cycle simpler. Do the edits in devtools, once you are ready, push a button (or a keyboard shortcut) and the changes will go back to the localhost files (js and css changes) and site itself will be refreshed. Editing the localhost file, refreshes the page on browser (ex: just Alt+Tab to it).
 
 ## How to make it work:
 
-Start with http://code.google.com/chrome/devtools/docs/contributing.html
+Download this project, and install it as a npm on the root directory of your site. (note: its a big download, 35-40mb :(. Had to include chrome and devtools in it).
 
-The devtools needs some hacks for this to work, its included as such in the repo (Will soon try to get genrate a patch for it).
+Well, after that, run ```~/node_modules/devsync/upload.js``` from the root directory of the site. This will bring up an instance of chromium browser.
 
-On the localhost side, we need a node js app (ex: upload.js). Hopefully an npm is coming soon. Run it from root of your application.
-
-After starting the backend server, start chrome with the following options.
-
-```./chrome --unlimited-quota-for-files --debug-devtools-frontend=<path to the devtools in this hack>```
-
-Remember, the chrome binary is the one you downloaded from initially.
+Now, run your localhost webserver and open the site in the chromium browser.
 
 ## How it works:
 
-There are basically two parts to the hack. One is to figure out the files changed, in the devtool, and update them on the localhost. Second part is to watch for any changes happening in the localhost, and if thats the case, refresh the browser.
+There are basically two parts to the hack. One is to figure out the files changed, in the devtools, and update them on the localhost. Second part is to refresh the browser, whenever the localhost files change.
 
 For first part, we hack into devtools, to figure out the files, and upload them to a nodejs app, which based on the path provided, and the current directory, updates the files.
 
@@ -26,8 +22,11 @@ For second part, we use socket.io library, in nodejs, to talk with the chrome de
 
 I know, pretty ugly hack :)
 
+## notes:
+- for the keyboard shortcut to work, the 'Resources' panel needs to be clicked once
+- in the inspector, only the style groups showing the file name (ex: 'default.css:5') saves edits to the localhost files.
 
 ## todo:
 - cleanup and organize code
-- some way to automate much of the stuff
-- npm
+- fix the issue with keyboard shortcut. Ex: clicking (once) the 'Resources' panel.
+
