@@ -1,11 +1,25 @@
 {
-"name": "ciju cherian",
-"email": "mail.ciju.cherian@gmail.com",
-"url": "https://github.com/ciju/devsync",
-"scripts": {"start": "node upload.js"},
+"name" : "devsync",
+"version" : "0.1.1",
+"description" : "sync edits in chrome dev tools (WebInspector) with the localhost",
+"keywords" : ["development", "chrome", "devsync", "webinspector", "devtools"],
 
-{"dependencies":
- {"formidable": }
- {"walk": }
+"author" : "ciju cherian <mail.ciju.cherian@gmail.com> (ciju.wordpress.com)",
+
+"repository" : {
+    "type" : "git",
+    "url" : "https://github.com/ciju/devsync"
+},
+
+"dependencies" : {
+    "formidable" : "1.0.2",
+    "walk" : "2.0.1",
+    "socket.io" : "0.8.2"
+},
+
+"bin" : {
+    "devsync" : "./upload.js"
 }
+
 }
+
