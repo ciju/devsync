@@ -2,11 +2,11 @@
 
 The hack is basically a bridge between chrome devtools (WebInspector) and localhost editing.
 
-As web developers, we spend quite some time on devtools (if using chrome). Each time, we try some changes on the site, replicate them to files on the localhost, and then again switch back to the browser and do refresh. This hack tries to make the cycle simpler. Do the edits in devtools, once you are ready, push a button (or a keyboard shortcut) and the changes will go back to the localhost files (js and css changes) and site itself will be refreshed. Editing the localhost file, refreshes the page on browser (ex: just Alt+Tab to it).
+As web developers, we spend quite some time on devtools (if using chrome). Each time, we try some changes on the site, replicate them to files on the localhost, and then again switch back to the browser and do refresh. This hack tries to make the cycle simpler. Do the edits in devtools, once you are ready, push a button (or a keyboard shortcut 'Ctr+Alt+s' ) and the changes will go back to the localhost files (js and css changes) and site itself will be refreshed. Editing the localhost file, refreshes the page on browser (ex: just Alt+Tab to it).
 
 ## How to make it work:
 
-Download this project, and install it as a npm on the root directory of your site. (note: its a big download, 35-40mb :(. Had to include chrome and devtools in it).
+Download this project, and install it as a npm on the root directory of your site ```npm install <devsync directory that you cloned>``` . (note: its a big download, 35-40mb :(. Had to include chrome and devtools in it).
 
 Well, after that, run ```~/node_modules/devsync/upload.js``` from the root directory of the site. This will bring up an instance of chromium browser.
 
