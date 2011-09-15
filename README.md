@@ -14,7 +14,7 @@ Now, run your localhost webserver and open the site in the chromium browser.
 
 Once you are ready with your changes, click on 'Resources' panel at least once (to activate the keyboard shortcut, i know, its a bug :) and then either use the button highlighted in the image below or keyboard shortcut 'Ctr+Alt+s'.
 
-<img src="http://github.com/ciju/devsync/raw/master/screenshot.png">
+<img src="https://github.com/ciju/devsync/raw/master/screenshot.jpg">
 
 ## How it works:
 
