@@ -25,6 +25,8 @@ For second part, we use socket.io library, in nodejs, to talk with the chrome de
 
 I know, pretty ugly hack :)
 
+If you wana play with the muck, search for 'ciju' in the devtools directory. Rest of the magic is happening in upload.js
+
 ## notes:
 - for the keyboard shortcut to work, the 'Resources' panel needs to be clicked once
 - in the inspector, only the style groups showing the file name (ex: 'default.css:5') saves edits to the localhost files.
