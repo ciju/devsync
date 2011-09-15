@@ -12,6 +12,10 @@ Well, after that, run ```~/node_modules/devsync/upload.js``` from the root direc
 
 Now, run your localhost webserver and open the site in the chromium browser.
 
+Once you are ready with your changes, click on 'Resources' panel at least once (to activate the keyboard shortcut, i know, its a bug :) and then either use the button highlighted in the image below or keyboard shortcut 'Ctr+Alt+s'.
+
+<img src="http://github.com/ciju/devsync/raw/master/screenshot.png">
+
 ## How it works:
 
 There are basically two parts to the hack. One is to figure out the files changed, in the devtools, and update them on the localhost. Second part is to refresh the browser, whenever the localhost files change.
