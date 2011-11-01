@@ -1,1 +1,6 @@
 node_modules*
+devsync.js
+chromium.js
+chromium/*
+chromiumer.sh
+
