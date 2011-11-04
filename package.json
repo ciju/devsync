@@ -11,7 +11,7 @@
         "url" : "https://github.com/ciju/devsync"
     },
 
-    "files": ["bin.js", "devsync.js", "chromiumer.sh", "package.json", "patch-devtools"],
+    "files": ["./bin.js", "./devsync.js", "./chromiumer.sh", "./package.json", "./patch-devtools"],
 
     "dependencies" : {
         "formidable" : "1.0.2",
