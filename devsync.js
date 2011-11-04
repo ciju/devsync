@@ -8,7 +8,6 @@ _ref = {
   'walk': 'walk',
   'optimist': 'optimist',
   socket: 'socket.io',
-  chromium: './chromium.js',
   'child_process': 'child_process'
 };
 for (id in _ref) {

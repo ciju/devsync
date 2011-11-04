@@ -1,7 +1,7 @@
 # http://stackoverflow.com/questions/7262869/best-way-to-require-several-modules-in-nodejs
 global[id] ?= require name for id, name of {
   'formidable', 'path', 'fs', 'sys', 'http', 'walk',
-  'optimist', socket: 'socket.io', chromium: './chromium.js',
+  'optimist', socket: 'socket.io',
   'child_process'
 }
 
