@@ -1,25 +1,31 @@
 {
-"name" : "devsync",
-"version" : "0.1.1",
-"description" : "sync edits in chrome dev tools (WebInspector) with the localhost",
-"keywords" : ["development", "chrome", "devsync", "webinspector", "devtools"],
+    "name" : "devsync",
+    "version" : "0.1.1",
+    "description" : "sync edits in chrome dev tools (WebInspector) with the localhost",
+    "keywords" : ["development", "chrome", "devsync", "webinspector", "devtools"],
 
-"author" : "ciju cherian <mail.ciju.cherian@gmail.com> (ciju.wordpress.com)",
+    "author" : "ciju cherian <ciju.ch3rian@gmail.com>",
 
-"repository" : {
-    "type" : "git",
-    "url" : "https://github.com/ciju/devsync"
-},
+    "repository" : {
+        "type" : "git",
+        "url" : "https://github.com/ciju/devsync"
+    },
 
-"dependencies" : {
-    "formidable" : "1.0.2",
-    "walk" : "2.0.1",
-    "socket.io" : "0.8.2"
-},
+    // "directories" : {
+    //     "diffs": "./patch-devtools"
+    // },
 
-"bin" : {
-    "devsync" : "./upload.js"
-}
+    "dependencies" : {
+        "formidable" : "1.0.2",
+        "walk": "2.0.1",
+        "optimist": "0.2.8",
+        "socket.io" : "0.8.2",
+        "request": "2.1.1"
+    },
+
+    "bin" : {
+        "devsync": "./bin.js"
+    }
 
 }
 

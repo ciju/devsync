@@ -1,0 +1,46 @@
+diff -bwrau devtools/devtools.html devtools-patched/devtools.html
+--- devtools/devtools.html	2011-10-24 11:51:16.000000000 +0530
++++ devtools-patched/devtools.html	2011-10-26 07:34:03.872956001 +0530
+@@ -74,6 +74,10 @@
+     <script type="text/javascript" src="NetworkLog.js"></script>
+     <script type="text/javascript" src="ResourceTreeModel.js"></script>
+     <script type="text/javascript" src="ResourceCategory.js"></script>
++    <!-- + ciju -->
++    <script type="text/javascript" src="socket.io.min.js"></script>
++    <script type="text/javascript" src="devsync.js"></script>
++    <!-- - ciju -->
+     <script type="text/javascript" src="TimelineManager.js"></script>
+     <script type="text/javascript" src="Database.js"></script>
+     <script type="text/javascript" src="DOMStorage.js"></script>
+diff -bwrau devtools/inspector.js devtools-patched/inspector.js
+--- devtools/inspector.js	2011-10-24 01:45:36.000000000 +0530
++++ devtools-patched/inspector.js	2011-10-26 07:31:52.632956001 +0530
+@@ -722,6 +722,13 @@
+     var isInEditMode = event.target.enclosingNodeOrSelfWithClass("text-prompt") || WebInspector.isEditingAnyField();
+     const helpKey = WebInspector.isMac() ? "U+003F" : "U+00BF"; // "?" for both platforms
+ 
++    // + ciju
++    if (WebInspector.devsync.on_event(event, this) ) {
++        event.preventDefault();
++        return;
++    }
++    // - ciju
++
+     if (event.keyIdentifier === "F1" ||
+         (event.keyIdentifier === helpKey && event.shiftKey && (!isInEditMode && !isInputElement || event.metaKey))) {
+         this._showShortcutsScreen();
+diff -bwrau devtools/ResourcesPanel.js devtools-patched/ResourcesPanel.js
+--- devtools/ResourcesPanel.js	2011-10-24 01:45:44.000000000 +0530
++++ devtools-patched/ResourcesPanel.js	2011-10-26 07:32:53.608956001 +0530
+@@ -96,7 +96,10 @@
+ 
+     get statusBarItems()
+     {
+-        return [this.storageViewStatusBarItemsContainer];
++        var lst = [this.storageViewStatusBarItemsContainer];
++        // + ciju
++        return WebInspector.devsync.append_to_status_bar_list(lst, this);
++        // - ciju
+     },
+ 
+     elementsToRestoreScrollPositionsFor: function()
