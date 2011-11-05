@@ -14,7 +14,6 @@ OS=`uname -s 2>/dev/null`
 if [[ "$OS" == 'Linux' ]]; then
     APP="chrome-linux.zip"
 elif [[ "$OS" == 'Darwin' ]]; then
-    OS="Mac"
     APP="chrome-mac.zip"
 else
     log "ERROR"
@@ -64,7 +63,7 @@ DPATH="$INSTALLPATH/devtools"
 exec_app() {
     if [[ "$OS" == "Linux" ]]; then
         BIN="$CPATH/chrome"
-    elif [[ "$OS" == "Mac" ]]; then
+    elif [[ "$OS" == "Darwin" ]]; then
         BIN="$CPATH/Chromium.app/Contents/MacOS/Chromium"
     fi
     log "Executing chrome with patched devtools. bin: $BIN, devtools: $DPATH"
@@ -125,7 +124,7 @@ APPBASE=$(basename "$APP" .zip)
 log "Moving $TMP/$APPBASE to $CPATH"
 if [[ "$OS" == "Linux" ]]; then
     mv "$TMP/$APPBASE" "$CPATH"
-elif [[ "$OS" == "Mac" ]]; then
+elif [[ "$OS" == "Darwin" ]]; then
     mv "$TMP/$APPBASE/Chromium.app" "$CPATH"
 fi
 
