@@ -23,7 +23,7 @@
 
     "bin" : {
         "devsync": "./bin.js",
-        "chromiumer": "./chromiumer.sh"
+        "devsync-chromium": "./chromiumer.sh"
     }
 
 }

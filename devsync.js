@@ -1,4 +1,5 @@
-var exec_cmd, handle_chromium, id, name, start_refresh_server, start_upload_server, _ref, _ref2;
+var exec_cmd, handle_chromium, id, log, name, start_refresh_server, start_upload_server, _ref, _ref2;
+var __slice = Array.prototype.slice;
 _ref = {
   'formidable': 'formidable',
   'path': 'path',
@@ -16,6 +17,16 @@ for (id in _ref) {
     global[id] = require(name);
   }
 }
+log = function() {
+  var args, st;
+  args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+  try {
+    throw new Error;
+  } catch (e) {
+    st = e.stack.split('\n')[2].replace(/\ */, ' ').replace(' at ', '').replace(__dirname + '/', '');
+    return console.log.apply(null, [st].concat(args));
+  }
+};
 start_upload_server = function(port, cwd) {
   var update_local_file;
   update_local_file = function(orig, updt) {
@@ -38,10 +49,6 @@ start_upload_server = function(port, cwd) {
           'content-type': 'text/plain',
           'Access-Control-Allow-Origin': '*'
         });
-        sys.debug(sys.inspect({
-          fields: fields,
-          files: files
-        }));
         update_local_file(path.join(cwd, fields['path']), files['blob']['path']);
         return res.end();
       });
@@ -52,7 +59,6 @@ start_refresh_server = function(port, wpath) {
   var io, watch;
   watch = function(dir, fn) {
     var walker;
-    sys.debug('dir: ' + dir);
     walker = walk.walk(dir, {});
     walker.on("names", function(root, nodeNames) {
       return nodeNames.sort(function(a, b) {
@@ -78,59 +84,77 @@ start_refresh_server = function(port, wpath) {
       return next();
     });
     return walker.on("end", function() {
-      return sys.debug("all done");
+      return log("all done");
     });
   };
   io = socket.listen(port);
   global.cb = null;
   io.sockets.on('connection', function(socket) {
-    sys.log('registering refresh socket');
+    log('registering refresh socket');
     return global.cb = function() {
-      sys.log('called by watcher');
+      log('called by watcher');
       return socket.emit('refresh');
     };
   });
   return watch(wpath, function() {
-    sys.log('path: ' + wpath);
+    log('path: ' + wpath);
     return typeof cb === "function" ? cb() : void 0;
   });
 };
-exec_cmd = function(cmd, cb) {
+exec_cmd = function(cmd, opts) {
   var child;
-  return child = child_process.exec(cmd, function(error, stdout, stderr) {
-    if (stderr) {
-      console.log(stderr);
-    }
-    if (stdout) {
-      console.log(stdout);
-    }
-    if (error !== null) {
-      return console.log('exec error: ', error, cmd);
-    } else {
-      return typeof cb === "function" ? cb() : void 0;
-    }
+  log('cmd: ', cmd, ' opts: ', opts);
+  child = child_process.spawn(cmd, opts, {
+    cwd: __dirname
+  });
+  child.stdout.on('data', function(data) {
+    return process.stdout.write(data);
+  });
+  child.stderr.on('data', function(data) {
+    return process.stderr.write(data);
+  });
+  return child.on('exit', function() {
+    return log('exiting');
   });
 };
 handle_chromium = function(argv) {
   var cb, chromium_path, opts;
-  opts = argv.i != null ? "-f" : argv.r != null ? (cb = function() {}, "-d") : "";
-  if (argv.l != null) {
-    opts += " -t";
+  opts = [];
+  if (argv.i != null) {
+    opts.push("-f");
+  } else if (argv.r != null) {
+    cb = function() {};
+    opts.push("-d");
   }
-  chromium_path = path.join(__dirname, "chromiumer.sh");
-  console.log('options: ', opts);
-  return exec_cmd(("cd " + __dirname + "; ") + chromium_path + " " + opts);
+  if (argv.l != null) {
+    opts.push("-t");
+  }
+  chromium_path = path.join(__dirname, "devsync-chromium");
+  log('options: ', chromium_path, opts);
+  return exec_cmd("chromiumer", opts);
 };
 module.exports.devsync = function() {
   var argv, cwd, watch_path;
   cwd = fs.realpathSync(process.cwd());
   argv = optimist.argv;
   watch_path = argv._ ? fs.realpathSync(argv._) : cwd;
-  global.debug = argv.d != null;
+  global.debug = argv.v != null;
   if (!(argv.r != null)) {
     start_upload_server(9888, cwd);
     start_refresh_server(9889, watch_path);
   }
-  handle_chromium(argv);
-  return sys.log('watch_path: ' + watch_path + '  debug: ' + debug);
+  process.on('uncaughtException', function() {
+    log('uncaughtException: Blame it on ciju.ch3rian@gmail.com, some details would be appreciated.');
+    return process.exit();
+  });
+  process.on('SIGTERM', function() {
+    log('termination signal. do stuff');
+    return process.exit();
+  });
+  process.on('SIGINT', function() {
+    log('---------xxxxxxxxx');
+    return process.exit();
+  });
+  log('setting up chromium: please wait');
+  return handle_chromium(argv);
 };
