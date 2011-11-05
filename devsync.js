@@ -131,7 +131,7 @@ handle_chromium = function(argv) {
   }
   chromium_path = path.join(__dirname, "devsync-chromium");
   log('options: ', chromium_path, opts);
-  return exec_cmd("chromiumer", opts);
+  return exec_cmd("devsync-chromium", opts);
 };
 module.exports.devsync = function() {
   var argv, cwd, watch_path;

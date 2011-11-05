@@ -82,7 +82,7 @@ handle_chromium = (argv) ->
 
   chromium_path = path.join(__dirname, "devsync-chromium")
   log 'options: ', chromium_path, opts
-  exec_cmd "chromiumer", opts
+  exec_cmd "devsync-chromium", opts
 
 
 module.exports.devsync = ->
