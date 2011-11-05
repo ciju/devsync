@@ -125,7 +125,7 @@ APPBASE=$(basename "$APP" .zip)
 log "Moving $TMP/$APPBASE to $CPATH"
 if [[ "$OS" == "Linux" ]]; then
     mv "$TMP/$APPBASE" "$CPATH"
-elif [[ "$OS" == "Darwin" ]]; then
+elif [[ "$OS" == "Mac" ]]; then
     mv "$TMP/$APPBASE/Chromium.app" "$CPATH"
 fi
 
