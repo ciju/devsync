@@ -64,7 +64,7 @@ DPATH="$INSTALLPATH/devtools"
 exec_app() {
     if [[ "$OS" == "Linux" ]]; then
         BIN="$CPATH/chrome"
-    elif [[ "$OS" == "Darwin" ]]; then
+    elif [[ "$OS" == "Mac" ]]; then
         BIN="$CPATH/Chromium.app/Contents/MacOS/Chromium"
     fi
     log "Executing chrome with patched devtools. bin: $BIN, devtools: $DPATH"
