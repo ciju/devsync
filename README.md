@@ -8,7 +8,7 @@ As web developers, we spend quite some time on ```devtools``` (if using chrome).
 You would need node.js and npm for this to work. If you have both installed, all you need is to execute
 ```sudo npm install -g https://github.com/ciju/devsync/tarball/master```. Successful installation will make ```devsync``` command available on the system.
 
-To use it, run it from you project directory. The first time it runs, it will download an instance of ```chromium``` and patch ```devtools``` to allow file sync. This will bring up an instance of ```chromium```, on which you can edit css/js.
+To use it, run it from you project directory. The first time it runs, it will download an instance of ```chromium``` and patch ```devtools``` to allow file sync. This will bring up an instance of ```chromium```, on which you can edit css/js. You also need to run you default localhost server (ex: whatever you run while testing/developing your app/site on localhost). 
 
 Once you are ready with the changes to be saved, use the button pointed in the image below or keyboard shortcut ```'Ctr+Alt+s'```.
 
@@ -21,4 +21,6 @@ If your generated files are hosted from a separate directory (ex: jekyll servers
 Check the <a href="https://github.com/ciju/devsync/wiki/Internals">wiki page</a>.
 
 ## note:
-- in the inspector, only the style groups showing the file name save edits to the localhost files.
+- In the inspector, only the style groups showing the file name save edits to the localhost files.
+- Have tested it on linux (Ubuntu). Create issues or send in patch, if you find problems with installing it on Mac.
+- Doesn't work on windows.
