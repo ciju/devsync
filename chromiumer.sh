@@ -119,11 +119,7 @@ cd -
 
 APPBASE=$(basename "$APP" .zip)
 log "Moving $TMP/$APPBASE to $CPATH"
-if [[ "$OS" == "Linux" ]]; then
-    mv "$TMP/$APPBASE" "$CPATH"
-elif [[ "$OS" == "Mac" ]]; then
-    mv "$TMP/$APPBASE/Chromium.app" "$CPATH"
-fi
+mv "$TMP/$APPBASE" "$CPATH"
 
 exec_app
 
