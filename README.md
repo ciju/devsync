@@ -14,7 +14,9 @@ Once you are ready with the changes to be saved, use the button pointed in the i
 
 <img src="https://github.com/ciju/devsync/raw/master/screenshot.jpg">
 
-If your generated files are hosted from a separate directory (ex: jekyll servers), you can specify the directory as a parameter ex: ```devsync _site\````. 
+If your generated files are hosted from a separate directory (ex: jekyll servers), you can specify the directory as a parameter ex: ```devsync _site\```.
+
+A ```test-site``` is included in the repo. Point apache to it, run ```devsync``` from its root, and play with it. 
 
 ## Internals:
 

@@ -1,0 +1,15 @@
+.highlight {
+    color: gray;
+}
+
+body {
+    background-color: lightgray;
+    font-family: fantasy;
+    text-align: center;
+    color: green;
+    font-size: 2.2em;
+}
+
+#content {
+    background-color: white;
+}
