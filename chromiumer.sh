@@ -1,19 +1,16 @@
 #!/bin/bash
 
-# To install a chromium version.
-# 1) detect the os type
-# 2) create a directory
-# 3) download both the chromium and devtools for same build to the install directory
-# 4) patch the devtools
+# much of this is from https://gist.github.com/1093476 
 
 log() {
     echo "   chromium: $1"
 }
 
 OS=`uname -s 2>/dev/null`
-if [[ "$OS" == 'Linux' ]]; then
+if [[ "$OS" == "Linux" ]]; then
     APP="chrome-linux.zip"
-elif [[ "$OS" == 'Darwin' ]]; then
+elif [[ "$OS" == "Darwin" ]]; then
+    OS="Mac"
     APP="chrome-mac.zip"
 else
     log "ERROR"
@@ -63,7 +60,7 @@ DPATH="$INSTALLPATH/devtools"
 exec_app() {
     if [[ "$OS" == "Linux" ]]; then
         BIN="$CPATH/chrome"
-    elif [[ "$OS" == "Darwin" ]]; then
+    elif [[ "$OS" == "Mac" ]]; then
         BIN="$CPATH/Chromium.app/Contents/MacOS/Chromium"
     fi
     log "Executing chrome with patched devtools. bin: $BIN, devtools: $DPATH"
@@ -124,7 +121,7 @@ APPBASE=$(basename "$APP" .zip)
 log "Moving $TMP/$APPBASE to $CPATH"
 if [[ "$OS" == "Linux" ]]; then
     mv "$TMP/$APPBASE" "$CPATH"
-elif [[ "$OS" == "Darwin" ]]; then
+elif [[ "$OS" == "Mac" ]]; then
     mv "$TMP/$APPBASE/Chromium.app" "$CPATH"
 fi
 
@@ -134,24 +131,4 @@ log  "Cleaning up..."
 rm -rf "$TMP"
 log "All Done"
 
-exit 1
 
-# log "Modifying Chromium bin file to use --debug-devtools-frontend..."
-# BINPATH="$INSTALLPATH/Chromium.app/Contents/MacOS"
-# BIN="$BINPATH/Chromium"
-# mv "$BIN" "$BINPATH/Chromium-bin"
-
-# cat > "$BIN" <<'EOF'
-# #!/bin/bash
-# BIN=$(log $0 | perl -pe 's/$/-bin/')
-# DEV=$(log $0 | perl -pe 's#Chromium\.app.*#chromium/devtools#')
-# "$BIN" --debug-devtools-frontend="$DEV"
-# EOF
-# chmod +x "$BIN"
-# log "Done"
-
-
-# if [ -f "chromiumer-devtools.sh" ]; then
-#   log "Running chromiumer-devtools.sh..."
-#   ./chromiumer-devtools.sh "$DEVTOOLS"
-# fi
