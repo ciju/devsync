@@ -16,7 +16,7 @@ Once you are ready with the changes to be saved, use the button pointed in the i
 
 If your generated files are hosted from a separate directory (ex: jekyll servers), you can specify the directory as a parameter ex: ```devsync _site\```.
 
-A ```test-site``` is included in the repo. Point apache to it, run ```devsync``` from its root, and play with it. 
+A ```test-site``` is included in the repo. Put its path in apache configuration, run ```devsync``` from its root, and play with it. 
 
 ## Internals:
 
