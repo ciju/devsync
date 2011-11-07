@@ -27,7 +27,7 @@
             log('initializing the sync button');
 
             devsync._syncButton.addEventListener("click", function (event) {
-                log("clicked on the sync button")
+                log("clicked on the sync button");
                 devsync.sync(resource_panel);
             }, false);
         },
@@ -38,7 +38,8 @@
                 devsync.button_initialized = true;
             }
             log('appending the button to resource panel');
-            return lst.slice(0).push(devsync._syncButton.element);
+            lst.slice(0).push(devsync._syncButton.element);
+            return lst;
         },
         on_event: function (event, insp) {
             // in the inspector, to register the global shortcut.
@@ -168,7 +169,7 @@
         }
     };
 
-    devsync.setup_socket(window.PageAgent)
+    devsync.setup_socket(window.PageAgent);
 
     WebInspector.devsync = devsync;
 })(WebInspector);
